@@ -219,26 +219,78 @@ public class " + name + @": MonoBehaviour
             obj.tag = "Platform";
             obj.transform.position = new Vector3(x, scale / 2.0f, z);
             obj.transform.localScale = new Vector3(scale, scale, scale);
+            obj.GetComponent<Renderer>().material = (Material)AssetDatabase.LoadAssetAtPath("Assets/Materials/Mat 3.mat", typeof(Material));
         }
     }
     [MenuItem("Tools/CreateMaterial")]  // &s means Alt+S
     private static void CreateMaterial()
     {
         var material = new Material(Shader.Find("Standard"));
-        material.color = Color.white;
         var dir = "/Materials/";
         Debug.Log(Application.dataPath + dir);
         if (!Directory.Exists(Application.dataPath + dir))
         {
             Directory.CreateDirectory(Application.dataPath + dir);
         }
-        string path = Path.Combine("Assets" + dir, "Mat " + (Directory.GetFiles(Application.dataPath + dir,"*.mat").Length + 1) + ".mat"); // EditorUtility.SaveFilePanelInProject("Save Material", "NewMaterial.mat", "mat", "Please enter a file name to save the material to:");
+        string path = Path.Combine("Assets" + dir, "Mat " + (Directory.GetFiles(Application.dataPath + dir, "*.mat").Length + 1) + ".mat"); // EditorUtility.SaveFilePanelInProject("Save Material", "NewMaterial.mat", "mat", "Please enter a file name to save the material to:");
         if (path.Length != 0)
         {
             AssetDatabase.CreateAsset(material, path);
             AssetDatabase.SaveAssets();
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = material;
+        }
+    }
+
+    static void TraverseChildren(GameObject gameObject)
+    {
+
+        for (int i = 0; i < gameObject.transform.childCount; ++i)
+        {
+            GameObject child = gameObject.transform.GetChild(i).gameObject;
+            if (child.GetComponent<Renderer>() != null)
+            {
+                bounds.Encapsulate(child.GetComponent<Renderer>().bounds);
+            }
+            if (child.transform.childCount > 0)
+                TraverseChildren(child);
+        }
+
+    }
+    static Bounds bounds;
+
+    [MenuItem("Tools/Collider Fit to Children")]
+    static void FitToChildren()
+    {
+        bounds = new Bounds(Vector3.zero, Vector3.zero);
+        foreach (GameObject rootGameObject in Selection.gameObjects)
+        {
+            // if (!(rootGameObject.GetComponent<Collider>() is BoxCollider))
+            //     continue;
+            // bool hasBounds = false;
+
+            // for (int i = 0; i < rootGameObject.transform.childCount; ++i)
+            // {
+            //     Renderer childRenderer = rootGameObject.transform.GetChild(i).GetComponent<Renderer>();
+            //     if (childRenderer != null)
+            //     {
+            //         if (hasBounds)
+            //         {
+            //             bounds.Encapsulate(childRenderer.bounds);
+            //         }
+            //         else
+            //         {
+            //             bounds = childRenderer.bounds;
+            //             hasBounds = true;
+            //         }
+            //     }
+            // }
+            TravserChildren(rootGameObject);
+            float scale = rootGameObject.transform.localScale.x;
+            bounds = new Bounds(bounds.center, bounds.size / scale);
+            BoxCollider collider = (BoxCollider)rootGameObject.AddComponent(typeof(BoxCollider));
+            collider.center = (bounds.center - rootGameObject.transform.position) / scale;
+            collider.size = bounds.size;
         }
     }
 }
