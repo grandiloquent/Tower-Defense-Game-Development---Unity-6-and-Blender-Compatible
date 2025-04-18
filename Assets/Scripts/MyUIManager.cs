@@ -4,6 +4,19 @@ public class MyUIManager : MonoBehaviour
 {
     private UIDocument uiDocument;
     private Button myButton;
+    public static MyUIManager instance;
+    private VisualElement turretVisualElement;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
 
@@ -16,10 +29,23 @@ public class MyUIManager : MonoBehaviour
     {
 
     }
+    public void EnableTurrets()
+    {
+        turretVisualElement.SetEnabled(true);
+
+    }
+    public void SetTurretVisualElement(Vector3 position)
+    {
+        turretVisualElement.transform.position = position;
+    }
+
     void OnEnable()
     {
         // Get the UIDocument component attached to this GameObject
         uiDocument = GetComponent<UIDocument>();
+        turretVisualElement = uiDocument.rootVisualElement.Q<VisualElement>("Turrets");
+        turretVisualElement.BlockRaycasts(); //This optional extension method lets you register visual elements as if it were built in.
+        UIToolkitRaycastChecker.RegisterBlockingElement(turretVisualElement); // Same effect as the above code, but this is more explicit that you are registering your element to some system you'll need to unregister it from.
 
         if (uiDocument != null)
         {
@@ -55,5 +81,11 @@ public class MyUIManager : MonoBehaviour
     {
         UIInterface.instance.CreateTurret();
 
+    }
+    void OnDisable()
+    {
+        // Unregister the event listeners when the UI is disabled
+        turretVisualElement.AllowRaycasts();
+        UIToolkitRaycastChecker.UnregisterBlockingElement(turretVisualElement);
     }
 }

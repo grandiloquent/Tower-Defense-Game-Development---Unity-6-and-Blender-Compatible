@@ -189,10 +189,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2545142080065939768}
-  - component: {fileID: 2733924961987030521}
+  - component: {fileID: 1760123427820074495}
   m_Layer: 0
   m_Name: Gatling
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,7 +214,7 @@ Transform:
   - {fileID: 460884900182165256}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2733924961987030521
+--- !u!65 &1760123427820074495
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -233,8 +233,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.0569642, y: 2.0619607, z: 2.8352952}
-  m_Center: {x: 0, y: 1.025739, z: 0.18793714}
+  m_Size: {x: 3.0569642, y: 2.0619602, z: 2.8352952}
+  m_Center: {x: 0, y: 1.0257387, z: 0.18793714}
 --- !u!1 &2997487231533453680
 GameObject:
   m_ObjectHideFlags: 0

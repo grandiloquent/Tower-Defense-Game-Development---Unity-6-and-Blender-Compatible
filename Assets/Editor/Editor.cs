@@ -244,7 +244,12 @@ public class " + name + @": MonoBehaviour
 
     static void TraverseChildren(GameObject gameObject)
     {
-
+       
+        if (gameObject.GetComponent<Renderer>() != null)
+        {
+            Debug.Log(gameObject.name + gameObject.GetComponent<Renderer>().bounds);
+            bounds.Encapsulate(gameObject.GetComponent<Renderer>().bounds);
+        }
         for (int i = 0; i < gameObject.transform.childCount; ++i)
         {
             GameObject child = gameObject.transform.GetChild(i).gameObject;
