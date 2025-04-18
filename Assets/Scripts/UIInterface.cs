@@ -1,35 +1,31 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.EventSystems;
 public class UIInterface : MonoBehaviour
 {
 
     public GameObject cubeTurret;
     public GameObject cubeGatling;
+    public GameObject flamer;
+    public GameObject turretMenu;
     GameObject focusedObject;
     GameObject itemPrefab;
-    public static UIInterface instance;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+  
     void Start()
     {
 
     }
     public void CreateTurret()
     {
+
         itemPrefab = cubeTurret;
         CreatePrefab();
     }
     public void CreateGatling()
+    {
+        itemPrefab = cubeGatling;
+        CreatePrefab();
+    }
+   public void CreateFlamer()
     {
         itemPrefab = cubeGatling;
         CreatePrefab();
@@ -59,8 +55,8 @@ public class UIInterface : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("Turret"))
             {
-                MyUIManager.instance.EnableTurrets();
-                MyUIManager.instance.SetTurretVisualElement(Input.mousePosition);
+                turretMenu.SetActive(true);
+                turretMenu.transform.position =Input.mousePosition;
                 return;
             }
 

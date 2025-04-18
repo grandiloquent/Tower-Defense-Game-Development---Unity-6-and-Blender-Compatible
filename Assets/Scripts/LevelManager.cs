@@ -17,7 +17,7 @@ public class LevelManager : MonoBehaviour
         totalEnemies--;
         if (totalEnemies <= 0)
         {
-            Debug.Log("All enemies are dead!");
+            //Debug.Log("All enemies are dead!");
             // Load next level or show victory screen
         }
     }
