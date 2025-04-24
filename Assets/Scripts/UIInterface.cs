@@ -1,99 +1,120 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
 public class UIInterface : MonoBehaviour
 {
 
-    public GameObject cubeTurret;
-    public GameObject cubeGatling;
-    public GameObject flamer;
+    public GameObject rocketTurret;
+    public GameObject gatlingTurret;
+    public GameObject flamerTurret;
+
     public GameObject turretMenu;
-    GameObject focusedObject;
+
     GameObject itemPrefab;
-  
+    GameObject focusObj;
+
     void Start()
     {
 
     }
-    public void CreateTurret()
+
+    public void CreateRocket()
     {
 
-        itemPrefab = cubeTurret;
-        CreatePrefab();
+        itemPrefab = rocketTurret;
+        CreateItemForButton();
     }
+
     public void CreateGatling()
     {
-        itemPrefab = cubeGatling;
-        CreatePrefab();
+
+        itemPrefab = gatlingTurret;
+        CreateItemForButton();
     }
-   public void CreateFlamer()
+
+    public void CreateFlamer()
     {
-        itemPrefab = cubeGatling;
-        CreatePrefab();
+
+        itemPrefab = flamerTurret;
+        CreateItemForButton();
     }
-    void CreatePrefab()
+
+    public void CloseTurretMenu()
     {
+
+        turretMenu.SetActive(false);
+    }
+
+    void CreateItemForButton()
+    {
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!Physics.Raycast(ray, out hit))
-        {
-            return;
-        }
 
-        focusedObject = Instantiate(itemPrefab, hit.point, itemPrefab.transform.rotation);
-        focusedObject.GetComponent<Collider>().enabled = false;
+        if (!Physics.Raycast(ray, out hit)) return;
+
+        focusObj = Instantiate(itemPrefab, hit.point, itemPrefab.transform.rotation);
+        focusObj.GetComponent<Collider>().enabled = false;
     }
+
     void Update()
     {
+
+
         if (Input.GetMouseButtonDown(0))
         {
-            if(EventSystem.current.IsPointerOverGameObject())
-            {
-                return;
-            }
-          
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("Turret"))
-            {
-                turretMenu.SetActive(true);
-                turretMenu.transform.position =Input.mousePosition;
-                return;
-            }
 
-        }
-        else if (focusedObject && Input.GetMouseButton(0))
-        {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (!Physics.Raycast(ray, out hit))
+
+            if (Physics.Raycast(ray, out hit)
+                && hit.collider.gameObject.CompareTag("turret"))
             {
-                return;
+
+                turretMenu.transform.position = Input.mousePosition;
+                turretMenu.SetActive(true);
             }
-            focusedObject.transform.position = hit.point ;
         }
-        else if (focusedObject && Input.GetMouseButtonUp(0))
+        else if (focusObj && Input.GetMouseButton(0))
         {
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.CompareTag("Platform")
-            && hit.normal.Equals(new Vector3(0, 1, 0)))
+
+            if (Physics.Raycast(ray, out hit,Mathf.Infinity,~(1<<LayerMask.NameToLayer("Turret"))))
             {
-                hit.collider.gameObject.tag = "Occupied";
-                focusedObject.transform.position = new Vector3(hit.collider.gameObject.transform.position.x,
-                focusedObject.transform.position.y,
-                hit.collider.gameObject.transform.position.z);
-                focusedObject.GetComponent<Collider>().enabled = true;
+
+                focusObj.transform.position = hit.point;
+            }
+        }
+        else if (focusObj && Input.GetMouseButtonUp(0))
+        {
+
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit)
+                && hit.collider.gameObject.CompareTag("platform")
+                && hit.normal.Equals(new Vector3(0.0f, 1.0f, 0.0f)))
+            {
+
+                hit.collider.gameObject.tag = "occupied";
+                focusObj.transform.position = new Vector3(
+                    hit.collider.gameObject.transform.position.x,
+                    focusObj.transform.position.y,
+                    hit.collider.gameObject.transform.position.z);
+                focusObj.GetComponent<Collider>().enabled = true;
+                focusObj.GetComponent<SphereCollider>().enabled = true;
             }
             else
             {
-                Destroy(focusedObject);
+
+                Destroy(focusObj);
             }
-            focusedObject = null;
-
+            focusObj = null;
         }
-    }
-    void FixedUpdate()
-    {
-
     }
 }

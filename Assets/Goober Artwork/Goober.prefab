@@ -380,6 +380,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {fileID: 0}
+  enemyDetails: {fileID: 11400000, guid: a50d5a4d5910d0540b2ad3b433f40077, type: 2}
+  healthBarPrefab: {fileID: 910262499510076167, guid: 7bab33487d7d2ab46bead8ce80ddbfca, type: 3}
 --- !u!136 &5760629137957185086
 CapsuleCollider:
   m_ObjectHideFlags: 0

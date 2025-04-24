@@ -244,7 +244,7 @@ public class " + name + @": MonoBehaviour
 
     static void TraverseChildren(GameObject gameObject)
     {
-       
+
         if (gameObject.GetComponent<Renderer>() != null)
         {
             Debug.Log(gameObject.name + gameObject.GetComponent<Renderer>().bounds);
@@ -296,6 +296,54 @@ public class " + name + @": MonoBehaviour
             BoxCollider collider = (BoxCollider)rootGameObject.AddComponent(typeof(BoxCollider));
             collider.center = (bounds.center - rootGameObject.transform.position) / scale;
             collider.size = bounds.size;
+        }
+    }
+    [MenuItem("Tools/Animator")]  // &s means Alt+S
+    private static void Animator()
+    {
+        var dir="Assets/Animation";
+        if (!Directory.Exists(dir))
+        {
+            Directory.CreateDirectory(dir);
+        }
+        if (Selection.activeGameObject != null)
+        {
+            var controller = UnityEditor.Animations.AnimatorController.CreateAnimatorControllerAtPath("Assets/Animation/"+
+            Selection.activeGameObject.name
+            +".controller");
+            Selection.activeGameObject.AddComponent<Animator>();
+            Selection.activeGameObject.GetComponent<Animator>().runtimeAnimatorController = controller;
+
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject selected.");
+        }
+    }
+    [MenuItem("Tools/AduioSource")]
+    private static void AduioSource()
+    {   
+        if (Selection.activeGameObject != null)
+        {
+            var audioSource = Selection.activeGameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false;
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject selected.");
+        }
+    }
+    [MenuItem("Tools/SphereCollider")]  // &s means Alt+S
+    private static void SphereCollider()
+    {
+        if (Selection.activeGameObject != null)
+        {
+            SphereCollider sphereCollider = Selection.activeGameObject.AddComponent<SphereCollider>();
+            sphereCollider.isTrigger = true;
+        }
+        else
+        {
+            Debug.LogWarning("No GameObject selected.");
         }
     }
 }

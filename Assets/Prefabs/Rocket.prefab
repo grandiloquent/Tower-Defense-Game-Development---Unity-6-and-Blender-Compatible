@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5489270377551027214}
   - component: {fileID: 112367931674452580}
   - component: {fileID: 8339676962892490669}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rocket Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7024019010128265564}
   - component: {fileID: 356140144579412330}
   - component: {fileID: 7917714406685448301}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Rocket Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,9 +188,10 @@ GameObject:
   - component: {fileID: 2949943982004863191}
   - component: {fileID: 2750464696073096291}
   - component: {fileID: 4734686586883458111}
-  m_Layer: 0
+  - component: {fileID: 5301388069666380973}
+  m_Layer: 3
   m_Name: Rocket
-  m_TagString: Turret
+  m_TagString: turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +284,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.025590707, y: 0.020567188, z: 0.02459421}
   m_Center: {x: 0.0000000011920929, y: 0.010283594, z: 0}
@@ -304,7 +305,7 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Radius: 0.04
   m_Center: {x: 0, y: 0, z: 0}
@@ -320,3 +321,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d867e4be5640e241bb60b6c0dcf8cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  core: {fileID: 2697617952663958069}
+  gun: {fileID: 3542408428170973012}
+  turretProperties: {fileID: 11400000, guid: 8ac37c6cfeff39646a7ba5daf39847db, type: 2}
+  firingSound: {fileID: 5301388069666380973}
+  particleSystems: []
+  burstCount: 0
+--- !u!82 &5301388069666380973
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5977019458999684295}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6be7756c9363c9f4e8cde9f65b1720fc, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6be7756c9363c9f4e8cde9f65b1720fc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

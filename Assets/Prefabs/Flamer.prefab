@@ -12,9 +12,12 @@ GameObject:
   - component: {fileID: 1863226349315345326}
   - component: {fileID: 4485432636273475428}
   - component: {fileID: 5274693067914858403}
-  m_Layer: 0
+  - component: {fileID: 3037946906560017161}
+  - component: {fileID: 1278190074153817041}
+  - component: {fileID: 4689938316708463986}
+  m_Layer: 3
   m_Name: Flamer
-  m_TagString: Turret
+  m_TagString: turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2684014845059767985}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
@@ -107,10 +110,146 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.0137926815, y: 0.013326452, z: 0.017961705}
   m_Center: {x: 0, y: 0.006663225, z: 0.0021491277}
+--- !u!82 &3037946906560017161
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684014845059767985}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 6be7756c9363c9f4e8cde9f65b1720fc, type: 3}
+  m_Resource: {fileID: 8300000, guid: 6be7756c9363c9f4e8cde9f65b1720fc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1278190074153817041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684014845059767985}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d867e4be5640e241bb60b6c0dcf8cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 3836569985129990726}
+  gun: {fileID: 7207796835047836771}
+  turretProperties: {fileID: 11400000, guid: 5805f99c355ec014a82a482f406e53a5, type: 2}
+  firingSound: {fileID: 3037946906560017161}
+  particleSystems: []
+  burstCount: 0
+--- !u!135 &4689938316708463986
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2684014845059767985}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.04
+  m_Center: {x: 0, y: 0.00044266155, z: 0}
 --- !u!1 &3836569985129990726
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,7 +261,7 @@ GameObject:
   - component: {fileID: 5362913446959078516}
   - component: {fileID: 84050455366509682}
   - component: {fileID: 7450974309284101713}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flame Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,7 +349,7 @@ GameObject:
   - component: {fileID: 2993597326397008701}
   - component: {fileID: 8390513690210712817}
   - component: {fileID: 633105151494029571}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Flame Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}

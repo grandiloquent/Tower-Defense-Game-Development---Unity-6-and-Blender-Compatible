@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9092796604069461715}
   - component: {fileID: 4209836280807339487}
   - component: {fileID: 1768430457666971854}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gatling Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 712939761369668114}
   - component: {fileID: 6710736628082498913}
   - component: {fileID: 8767048287526607755}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gatling Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,9 +190,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2545142080065939768}
   - component: {fileID: 1760123427820074495}
-  m_Layer: 0
+  - component: {fileID: 6632641570092152613}
+  - component: {fileID: 4939259603962698537}
+  - component: {fileID: 3516209567841580227}
+  m_Layer: 3
   m_Name: Gatling
-  m_TagString: Turret
+  m_TagString: turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,7 +214,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9092796604069461715}
-  - {fileID: 460884900182165256}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1760123427820074495
@@ -231,10 +233,146 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 3.0569642, y: 2.0619602, z: 2.8352952}
   m_Center: {x: 0, y: 1.0257387, z: 0.18793714}
+--- !u!114 &6632641570092152613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2889615033536017282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d867e4be5640e241bb60b6c0dcf8cef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  core: {fileID: 2817009105445448040}
+  gun: {fileID: 2997487231533453680}
+  turretProperties: {fileID: 11400000, guid: aef3ae2c3a03b404abf5f050cdcc9de0, type: 2}
+  firingSound: {fileID: 4939259603962698537}
+  particleSystems: []
+  burstCount: 0
+--- !u!82 &4939259603962698537
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2889615033536017282}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!135 &3516209567841580227
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2889615033536017282}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 2.58
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2997487231533453680
 GameObject:
   m_ObjectHideFlags: 0
@@ -246,7 +384,7 @@ GameObject:
   - component: {fileID: 4255587410098595143}
   - component: {fileID: 9207497948957179402}
   - component: {fileID: 8521499803348313768}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gatling Turret 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +473,7 @@ GameObject:
   - component: {fileID: 3707100466064380438}
   - component: {fileID: 2355648295792110216}
   - component: {fileID: 734787411482615454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +561,7 @@ GameObject:
   - component: {fileID: 11739056403523395}
   - component: {fileID: 4032992601430053603}
   - component: {fileID: 7772146630394371868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gatling Turret 1.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +649,7 @@ GameObject:
   - component: {fileID: 3464175366758722888}
   - component: {fileID: 6892359545545796330}
   - component: {fileID: 5459210249116967272}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gatling Barrel 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -588,94 +726,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &8625944820568922910
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 460884900182165256}
-  - component: {fileID: 8674466823989904447}
-  - component: {fileID: 393899552806743521}
-  m_Layer: 0
-  m_Name: Gattling Barrel 2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &460884900182165256
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8625944820568922910}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.46144587, y: 0.69660676, z: 0.18289}
-  m_LocalScale: {x: 100, y: 100, z: 100}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2545142080065939768}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8674466823989904447
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8625944820568922910}
-  m_Mesh: {fileID: 3619649970773319052, guid: f4d930d0d918cc7459b652431bef158a, type: 3}
---- !u!23 &393899552806743521
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8625944820568922910}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 808329579e323d749bd793cc145c37e8, type: 2}
-  - {fileID: 2100000, guid: 808329579e323d749bd793cc145c37e8, type: 2}
-  - {fileID: 2100000, guid: 808329579e323d749bd793cc145c37e8, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9153731833278066999
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +737,7 @@ GameObject:
   - component: {fileID: 4873210862836310830}
   - component: {fileID: 482563731804431716}
   - component: {fileID: 5213485380855391162}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bullet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}

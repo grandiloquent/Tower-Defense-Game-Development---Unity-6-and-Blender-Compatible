@@ -1,26 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AI;
 
-public class FindHome : MonoBehaviour
-{
+public class FindHome : MonoBehaviour {
+
     public Transform destination;
-    UnityEngine.AI.NavMeshAgent agent;
+    public EnemyDetails enemyDetails;
+    public Slider healthBarPrefab;
+    NavMeshAgent ai;
+    int currentHealth;
+    Slider healthBar;
 
-    void Start()
-    {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.SetDestination(destination.position);
+    void Start() {
+
+        ai = GetComponent<NavMeshAgent>();
+        ai.SetDestination(destination.position);
+        ai.speed = enemyDetails.speed;
+        currentHealth = enemyDetails.maxHealth;
+        healthBar = Instantiate(healthBarPrefab, this.transform.position, Quaternion.identity);
+        healthBar.transform.SetParent(GameObject.Find("Canvas").transform);
+        healthBar.value = healthBar.maxValue = enemyDetails.maxHealth;
     }
-    void Update()
-    {
-        if (agent.remainingDistance < 0.5f && agent.hasPath)
-        {
+
+    public void Hit(int power) {
+
+        if (healthBar) {
+
+            healthBar.value -= power;
+            if (healthBar.value <= 0) {
+
+                Destroy(healthBar.gameObject);
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    void Update() {
+
+        if (ai.remainingDistance < 0.5f && ai.hasPath) {
+
             LevelManager.RemoveEnemy();
-            Destroy(gameObject, .1f);
+            ai.ResetPath();
+            Destroy(this.gameObject, 0.1f);
         }
 
-    }
-    void FixedUpdate()
-    {
+        if (healthBar) {
 
+            healthBar.transform.position = Camera.main.WorldToScreenPoint(this.transform.position + Vector3.up * 1.2f);
+        }
     }
 }

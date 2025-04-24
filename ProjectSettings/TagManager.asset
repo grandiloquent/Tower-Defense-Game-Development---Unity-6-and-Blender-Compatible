@@ -4,16 +4,21 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - 0.04
+  - turret
+  - spawn
   - Turret
   - Occupied
   - Platform
   - Spawn
   - goob
+  - platform
+  - occupied
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Turrent
   - Water
   - UI
   - 
