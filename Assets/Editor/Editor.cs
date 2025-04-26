@@ -207,8 +207,8 @@ public class " + name + @": MonoBehaviour
         AddTag("Platform");
         float minX = -10;
         float maxX = 10;
-        float minScale = 0.5f;
-        float maxScale = 1.5f;
+        float minScale = 1.5f;
+        float maxScale = 2.5f;
         for (int i = 0; i < 10; i++)
         {
             var x = Random.Range(minX, maxX);
@@ -216,13 +216,13 @@ public class " + name + @": MonoBehaviour
             var scale = Random.Range(minScale, maxScale);
             var obj = GameObject.CreatePrimitive(PrimitiveType.Cube);
             obj.name = "Platform" + i;
-            obj.tag = "Platform";
+            obj.tag = "platform";
             obj.transform.position = new Vector3(x, scale / 2.0f, z);
             obj.transform.localScale = new Vector3(scale, scale, scale);
             obj.GetComponent<Renderer>().material = (Material)AssetDatabase.LoadAssetAtPath("Assets/Materials/Mat 3.mat", typeof(Material));
         }
     }
-    [MenuItem("Tools/CreateMaterial")]  // &s means Alt+S
+    [MenuItem("Tools/Material")]  // &s means Alt+S
     private static void CreateMaterial()
     {
         var material = new Material(Shader.Find("Standard"));
@@ -247,7 +247,6 @@ public class " + name + @": MonoBehaviour
 
         if (gameObject.GetComponent<Renderer>() != null)
         {
-            Debug.Log(gameObject.name + gameObject.GetComponent<Renderer>().bounds);
             bounds.Encapsulate(gameObject.GetComponent<Renderer>().bounds);
         }
         for (int i = 0; i < gameObject.transform.childCount; ++i)
@@ -255,7 +254,9 @@ public class " + name + @": MonoBehaviour
             GameObject child = gameObject.transform.GetChild(i).gameObject;
             if (child.GetComponent<Renderer>() != null)
             {
+                
                 bounds.Encapsulate(child.GetComponent<Renderer>().bounds);
+
             }
             if (child.transform.childCount > 0)
                 TraverseChildren(child);
@@ -293,24 +294,28 @@ public class " + name + @": MonoBehaviour
             TraverseChildren(rootGameObject);
             float scale = rootGameObject.transform.localScale.x;
             bounds = new Bounds(bounds.center, bounds.size / scale);
+
             BoxCollider collider = (BoxCollider)rootGameObject.AddComponent(typeof(BoxCollider));
-            collider.center = (bounds.center - rootGameObject.transform.position) / scale;
-            collider.size = bounds.size;
+            Debug.Log("bounds.center: " + bounds.center);
+            Debug.Log("rootGameObject.transform.position: " + rootGameObject.transform.position);
+            bounds.center= (bounds.center - rootGameObject.transform.position) / scale;
+            collider.center = bounds.center;
+                collider.size = bounds.size;
         }
     }
     [MenuItem("Tools/Animator")]  // &s means Alt+S
     private static void Animator()
     {
-        var dir="Assets/Animation";
+        var dir = "Assets/Animation";
         if (!Directory.Exists(dir))
         {
             Directory.CreateDirectory(dir);
         }
         if (Selection.activeGameObject != null)
         {
-            var controller = UnityEditor.Animations.AnimatorController.CreateAnimatorControllerAtPath("Assets/Animation/"+
+            var controller = UnityEditor.Animations.AnimatorController.CreateAnimatorControllerAtPath("Assets/Animation/" +
             Selection.activeGameObject.name
-            +".controller");
+            + ".controller");
             Selection.activeGameObject.AddComponent<Animator>();
             Selection.activeGameObject.GetComponent<Animator>().runtimeAnimatorController = controller;
 
@@ -322,7 +327,7 @@ public class " + name + @": MonoBehaviour
     }
     [MenuItem("Tools/AduioSource")]
     private static void AduioSource()
-    {   
+    {
         if (Selection.activeGameObject != null)
         {
             var audioSource = Selection.activeGameObject.AddComponent<AudioSource>();
@@ -344,6 +349,27 @@ public class " + name + @": MonoBehaviour
         else
         {
             Debug.LogWarning("No GameObject selected.");
+        }
+    }
+    [MenuItem("Tools/Align")]
+    private static void Align()
+    {
+        if (Selection.gameObjects != null && Selection.gameObjects.Length > 1)
+        {
+            Selection.gameObjects[1].transform.position = Selection.gameObjects[0].transform.position;
+        }
+    }
+    [MenuItem("Tools/AlignX")]
+    private static void AlignX()
+    {
+        if (Selection.gameObjects != null && Selection.gameObjects.Length > 1)
+        {
+            var x = Selection.gameObjects[0].transform.position.x;
+            for (int i = 1; i < Selection.gameObjects.Length; i++)
+            {
+                Selection.gameObjects[i].transform.position = new Vector3(x, Selection.gameObjects[i].transform.position.y, Selection.gameObjects[i].transform.position.z);
+            }
+
         }
     }
 }

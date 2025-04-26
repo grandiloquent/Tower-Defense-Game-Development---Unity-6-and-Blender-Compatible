@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90287b743066624697e8cc4ffd2c126, type: 3}
   m_Name: TProperties
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 40
   accuracy: 80
   turnSpeed: 1.5
-  reloadTime: 2
+  reloadTime: 5
   aimingAccuracy: 20

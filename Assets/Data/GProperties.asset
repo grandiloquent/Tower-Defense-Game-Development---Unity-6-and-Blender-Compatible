@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   accuracy: 90
-  turnSpeed: 1
-  reloadTime: 1
-  aimingAccuracy: 2
+  turnSpeed: 5
+  reloadTime: 0.1
+  aimingAccuracy: 20

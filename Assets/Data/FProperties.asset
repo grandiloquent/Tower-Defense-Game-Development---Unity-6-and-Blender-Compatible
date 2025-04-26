@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90287b743066624697e8cc4ffd2c126, type: 3}
   m_Name: FProperties
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 50
   accuracy: 60
   turnSpeed: 3
   reloadTime: 5

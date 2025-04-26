@@ -13,7 +13,8 @@ public class FindHome : MonoBehaviour {
     int currentHealth;
     Slider healthBar;
 
-    void Start() {
+    void Start()
+    {
 
         ai = GetComponent<NavMeshAgent>();
         ai.SetDestination(destination.position);
@@ -24,29 +25,37 @@ public class FindHome : MonoBehaviour {
         healthBar.value = healthBar.maxValue = enemyDetails.maxHealth;
     }
 
-    public void Hit(int power) {
+    public void Hit(int power)
+    {
 
-        if (healthBar) {
+        if (healthBar)
+        {
 
             healthBar.value -= power;
-            if (healthBar.value <= 0) {
+            if (healthBar.value <= 0)
+            {
 
+                LevelManager.DisplayDeathExplosion(this.transform.position + new Vector3(0.0f, 0.5f, 0.0f));
                 Destroy(healthBar.gameObject);
                 Destroy(this.gameObject);
             }
         }
     }
 
-    void Update() {
+    void Update()
+    {
 
-        if (ai.remainingDistance < 0.5f && ai.hasPath) {
+        if (ai.remainingDistance < 0.5f && ai.hasPath)
+        {
 
             LevelManager.RemoveEnemy();
             ai.ResetPath();
+            Destroy(healthBar.gameObject);
             Destroy(this.gameObject, 0.1f);
         }
 
-        if (healthBar) {
+        if (healthBar)
+        {
 
             healthBar.transform.position = Camera.main.WorldToScreenPoint(this.transform.position + Vector3.up * 1.2f);
         }
